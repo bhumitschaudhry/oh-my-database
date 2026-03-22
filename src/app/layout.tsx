@@ -3,7 +3,7 @@ import "./globals.css";
 import { Toaster } from "sonner";
 
 export const metadata: Metadata = {
-  title: "QueryForge - Turn Natural Language into SQL",
+  title: "oh-my-database - Turn Natural Language into SQL",
   description: "Query your database using natural language. No SQL knowledge required.",
 };
 

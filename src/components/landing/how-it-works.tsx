@@ -8,7 +8,7 @@ const steps = [
     number: "01",
     icon: FileText,
     title: "Paste your schema",
-    description: "Copy your database schema (CREATE TABLE statements) and paste it into QueryForge.",
+    description: "Copy your database schema (CREATE TABLE statements) and paste it into oh-my-database.",
   },
   {
     number: "02",

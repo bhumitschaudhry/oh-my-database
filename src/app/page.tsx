@@ -14,7 +14,7 @@ export default function Home() {
         
         <footer className="border-t py-8">
           <div className="mx-auto max-w-5xl px-6 text-center text-sm text-muted-foreground">
-            <p>QueryForge — Query your database using natural language</p>
+            <p>oh-my-database — Query your database using natural language</p>
           </div>
         </footer>
       </main>

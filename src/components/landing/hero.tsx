@@ -25,7 +25,7 @@ export function Hero() {
       </h1>
 
       <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground sm:text-xl">
-        Query your database using simple questions. QueryForge understands your schema
+        Query your database using simple questions. oh-my-database understands your schema
         and generates accurate SQL — no SQL knowledge required.
       </p>
 

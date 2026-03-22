@@ -142,7 +142,7 @@ export const useAppStore = create<AppState>()(
       },
     }),
     {
-      name: 'queryforge-storage',
+      name: 'oh-my-database-storage',
       storage: createJSONStorage(() => localStorage),
     }
   )

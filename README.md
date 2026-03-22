@@ -1,4 +1,4 @@
-# 🔮 QueryForge
+# 🔮 oh-my-database
 
 ### Transform Natural Language into SQL Queries
 
@@ -6,7 +6,7 @@
 [![License](https://img.shields.io/badge/license-MIT-blue)](#)
 [![Platform](https://img.shields.io/badge/platform-GitHub%20Pages-cyan)](#)
 
-> **QueryForge** is a browser-based text-to-SQL agent that helps non-technical users explore and understand their database data—without writing SQL or installing software.
+> **oh-my-database** is a browser-based text-to-SQL agent that helps non-technical users explore and understand their database data—without writing SQL or installing software.
 
 ---
 
@@ -28,7 +28,7 @@
 
 1. **Open the App**
    ```
-   https://yourusername.github.io/queryforge
+   https://yourusername.github.io/oh-my-database
    ```
 
 2. **Paste Your Schema**
@@ -52,7 +52,7 @@
 
 ### Example Queries
 
-| What You Ask | QueryForge Generates |
+| What You Ask | oh-my-database Generates |
 |--------------|---------------------|
 | "How many users signed up this month?" | `SELECT COUNT(*) FROM users WHERE created_at >= DATE_TRUNC('month', CURRENT_DATE);` |
 | "Show me the top 10 products by revenue" | `SELECT name, SUM(revenue) as total FROM products GROUP BY name ORDER BY total DESC LIMIT 10;` |
@@ -85,10 +85,11 @@
 
 | Layer | Technology |
 |-------|------------|
-| Frontend | Vanilla JavaScript (ES2020+) |
+| Framework | Next.js 15 (React 19) |
+| Styling | Tailwind CSS + Radix UI |
+| State Management | Zustand with persistence |
 | AI Integration | REST APIs (OpenAI, Gemini, Anthropic, NVIDIA NIM, OpenRouter) |
-| SQL Validation | AST Parsing |
-| Styling | Custom CSS with modern design |
+| SQL Execution | sql.js (SQLite in the browser) |
 | Hosting | GitHub Pages (static) |
 
 ---
@@ -96,20 +97,23 @@
 ## 📁 Project Structure
 
 ```
-├── index.html          # Main application
 ├── src/
-│   ├── app.js          # Core application logic
-│   ├── ai/
-│   │   ├── providers.js    # AI provider integration
-│   │   └── sql-generator.js # Natural language to SQL
-│   ├── ui/
-│   │   ├── components.js   # UI components
-│   │   └── styles.css      # Application styles
-│   └── utils/
-│       ├── schema-parser.js # Database schema parsing
-│       └── sql-validator.js # SQL query validation
-├── .planning/          # Project planning docs
-└── README.md           # This file
+│   ├── app/
+│   │   ├── layout.tsx         # Root layout with metadata
+│   │   ├── page.tsx          # Landing page
+│   │   ├── settings/         # Settings page
+│   │   └── query/            # Query execution page
+│   ├── components/
+│   │   ├── landing/          # Landing page components
+│   │   └── ui/               # Reusable UI components
+│   ├── stores/
+│   │   └── app-store.ts      # Zustand state management
+│   └── lib/
+│       ├── ai/               # AI provider integration
+│       ├── db/               # SQL.js database logic
+│       └── utils/            # Schema parser, SQL validator
+├── .planning/                # Project planning docs
+└── README.md                 # This file
 ```
 
 ---
@@ -135,6 +139,6 @@ This project is licensed under the MIT License.
 
 **Built with ❤️ for non-technical database users**
 
-*QueryForge — Democratizing data access*
+*oh-my-database — Democratizing data access*
 
 </div>

@@ -8,13 +8,13 @@ const features = [
     icon: MessageSquare,
     title: "No SQL knowledge required",
     description:
-      "Ask questions in plain English. QueryForge translates your questions into accurate SQL queries.",
+      "Ask questions in plain English. oh-my-database translates your questions into accurate SQL queries.",
   },
   {
     icon: Database,
     title: "Works with your schema",
     description:
-      "Paste your database schema and QueryForge understands your tables, columns, and relationships.",
+      "Paste your database schema and oh-my-database understands your tables, columns, and relationships.",
   },
   {
     icon: KeyRound,
