@@ -2,22 +2,36 @@
 
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Sparkles } from "lucide-react";
+import { Sparkles, Github } from "lucide-react";
 
 export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-6">
-        <Link href="/" className="flex items-center gap-2">
-          <Sparkles className="h-6 w-6 text-blue-600" />
-          <span className="text-lg font-bold">oh-my-database</span>
+        <Link href="/" className="flex items-center gap-2 hover:opacity-90 transition-opacity">
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600 text-white">
+            <Sparkles className="h-5 w-5" />
+          </div>
+          <span className="text-lg font-bold tracking-tight">oh-my-database</span>
         </Link>
 
-        <nav className="flex items-center gap-4">
-          <Button asChild size="sm">
-            <Link href="/settings">Start</Link>
-          </Button>
+        <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
+          <Link href="#features" className="text-muted-foreground hover:text-foreground transition-colors">
+            Features
+          </Link>
+          <Link href="#how-it-works" className="text-muted-foreground hover:text-foreground transition-colors">
+            How it works
+          </Link>
+          <Link href="https://github.com" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
+            <Github className="h-5 w-5" />
+          </Link>
         </nav>
+
+        <div className="flex items-center gap-4">
+          <Button asChild size="sm" className="rounded-full px-5">
+            <Link href="/query">Start for free</Link>
+          </Button>
+        </div>
       </div>
     </header>
   );

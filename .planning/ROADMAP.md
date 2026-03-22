@@ -9,6 +9,7 @@ QueryForge delivers a client-side text-to-SQL experience where non-technical use
 - [x] **Phase 1: Foundation** - Project scaffold, schema input, API key management, landing page (2026-03-22)
 - [x] **Phase 2: Core Query Flow** - AI integration, SQL generation, query execution, results display (2026-03-22)
 - [x] **Phase 3: Rate Limiting** - API quota tracking, enforcement, persistence across sessions (2026-03-22)
+- [ ] **Phase 4: Visual Redesign** - Modern startup-style landing page (2026-03-22)
 
 ## Phase Details
 
@@ -51,13 +52,28 @@ QueryForge delivers a client-side text-to-SQL experience where non-technical use
   3. Quota state persists across page refreshes ✓
 **Plans**: 3/3 (03-01, 03-02, 03-03)
 
+### Phase 4: Visual Redesign
+**Goal**: Redesign the landing page to look like a modern startup website with improved layout, components, and visuals.
+**Depends on**: Phase 1, 2, 3
+**Requirements**: UI-07, UI-08, UI-09, UI-10, UI-11, UI-12
+**Success Criteria** (what must be TRUE):
+  1. Header includes navigation links and GitHub placeholder ✓
+  2. Hero section features a modern gradient, impactful text, and a mock UI preview ✓
+  3. Features section uses a modern 'bento grid' or improved layout ✓
+  4. How It Works section is more visual and engaging ✓
+  5. New CTA section added before the footer ✓
+  6. Footer is refined with more links and better structure ✓
+  7. Mobile responsiveness is maintained across all sections ✓
+**Plans**: 0/2
+
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 1 → 2 → 3
+Phases execute in numeric order: 1 → 2 → 3 → 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation | 3/3 | Complete | 2026-03-22 |
 | 2. Core Query Flow | 3/3 | Complete | 2026-03-22 |
 | 3. Rate Limiting | 3/3 | Complete | 2026-03-22 |
+| 4. Visual Redesign | 0/2 | In Progress | - |

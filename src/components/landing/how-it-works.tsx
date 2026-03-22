@@ -1,56 +1,71 @@
 "use client";
 
 import { Card, CardContent } from "@/components/ui/card";
-import { FileText, MessageCircle, Play } from "lucide-react";
+import { FileCode2, Settings2, Sparkles, MoveRight } from "lucide-react";
 
 const steps = [
   {
     number: "01",
-    icon: FileText,
-    title: "Paste your schema",
-    description: "Copy your database schema (CREATE TABLE statements) and paste it into oh-my-database.",
+    icon: FileCode2,
+    title: "Import Schema",
+    description: "Export your database schema as SQL and paste it. We index it locally in your browser.",
+    color: "blue",
   },
   {
     number: "02",
-    icon: MessageCircle,
-    title: "Ask in plain English",
-    description: "Type your question about your data using natural language.",
+    icon: Settings2,
+    title: "Configure AI",
+    description: "Connect your Gemini or OpenAI API key. We use it to translate your questions to SQL.",
+    color: "indigo",
   },
   {
     number: "03",
-    icon: Play,
-    title: "Get results instantly",
-    description: "Review the generated SQL, then execute with one click.",
+    icon: Sparkles,
+    title: "Ask & Execute",
+    description: "Ask questions like 'Show me monthly sales' and execute the generated SQL instantly.",
+    color: "violet",
   },
 ];
 
 export function HowItWorks() {
   return (
-    <section className="mx-auto max-w-5xl px-6 py-16">
-      <h2 className="mb-12 text-center text-3xl font-bold tracking-tight">
-        How it works
-      </h2>
+    <section className="mx-auto max-w-6xl px-6">
+      <div className="text-center mb-16">
+        <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
+          Get started in minutes
+        </h2>
+        <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
+          No complex database drivers or server-side setups. oh-my-database works 
+          wherever your browser does.
+        </p>
+      </div>
 
-      <div className="grid gap-8 md:grid-cols-3">
+      <div className="relative grid gap-12 md:grid-cols-3">
+        {/* Connection lines (desktop) */}
+        <div className="absolute top-1/2 left-[15%] right-[15%] hidden h-px -translate-y-1/2 border-t-2 border-dashed border-slate-200 dark:border-slate-800 md:block" />
+        
         {steps.map((step, index) => (
-          <div key={index} className="relative">
+          <div key={index} className="relative group">
+            <div className={`mx-auto mb-8 flex h-16 w-16 items-center justify-center rounded-2xl bg-${step.color}-600 text-white shadow-xl shadow-${step.color}-500/20 group-hover:scale-110 transition-transform duration-300 relative z-10`}>
+              <step.icon className="h-8 w-8" />
+              <div className="absolute -top-3 -right-3 flex h-8 w-8 items-center justify-center rounded-full bg-white dark:bg-slate-950 border-2 border-slate-100 dark:border-slate-800 text-xs font-bold text-slate-900 dark:text-white">
+                {step.number}
+              </div>
+            </div>
+            
+            <div className="text-center">
+              <h3 className="mb-3 text-xl font-bold">{step.title}</h3>
+              <p className="text-muted-foreground leading-relaxed">
+                {step.description}
+              </p>
+            </div>
+            
+            {/* Arrow for mobile */}
             {index < steps.length - 1 && (
-              <div className="absolute left-1/2 top-12 hidden h-0.5 w-full -translate-x-1/2 bg-border md:block" />
+              <div className="mt-8 flex justify-center md:hidden">
+                <MoveRight className="h-6 w-6 text-slate-300 rotate-90" />
+              </div>
             )}
-            <Card className="relative border-0 bg-white shadow-none dark:bg-slate-950">
-              <CardContent className="pt-6">
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-blue-600 text-white font-bold">
-                  <step.icon className="h-5 w-5" />
-                </div>
-                <span className="mb-2 block text-sm font-medium text-blue-600">
-                  Step {step.number}
-                </span>
-                <h3 className="mb-2 text-lg font-semibold">{step.title}</h3>
-                <p className="text-sm text-muted-foreground">
-                  {step.description}
-                </p>
-              </CardContent>
-            </Card>
           </div>
         ))}
       </div>

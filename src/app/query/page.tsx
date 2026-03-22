@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import { useAppStore } from '@/stores/app-store';
+import { Header } from '@/components/landing/header';
+import { SetupWizard } from '@/components/onboarding/setup-wizard';
 import { QueryInput } from '@/components/query/query-input';
 import { SqlDisplay } from '@/components/query/sql-display';
 import { LoadingSkeleton } from '@/components/query/loading-skeleton';
@@ -102,8 +104,18 @@ export default function QueryPage() {
     setError(null);
   };
 
+  if (!parsedSchema || !activeProvider) {
+    return (
+      <>
+        <Header />
+        <SetupWizard />
+      </>
+    );
+  }
+
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background flex flex-col">
+      <Header />
       <ConfirmationDialog
         open={showConfirm}
         sql={generatedSql || ''}
