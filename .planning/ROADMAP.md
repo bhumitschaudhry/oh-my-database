@@ -6,7 +6,7 @@ QueryForge delivers a client-side text-to-SQL experience where non-technical use
 
 ## Phases
 
-- [ ] **Phase 1: Foundation** - Project scaffold, schema input, API key management, landing page
+- [x] **Phase 1: Foundation** - Project scaffold, schema input, API key management, landing page (2026-03-22)
 - [ ] **Phase 2: Core Query Flow** - AI integration, SQL generation, query execution, results display
 - [ ] **Phase 3: Rate Limiting** - API quota tracking, enforcement, persistence across sessions
 
@@ -23,7 +23,7 @@ QueryForge delivers a client-side text-to-SQL experience where non-technical use
   4. User can paste database schema and see parsed confirmation
   5. User can access clean settings page for API key management
   6. UI is responsive on desktop and tablet
-**Plans**: TBD
+**Plans**: 3/3 (01-01, 01-02, 01-03)
 
 ### Phase 2: Core Query Flow
 **Goal**: Users can enter natural language questions and receive, review, execute SQL with results
@@ -58,6 +58,6 @@ Phases execute in numeric order: 1 → 2 → 3
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 0/TBD | Not started | - |
+| 1. Foundation | 3/3 | Complete | 2026-03-22 |
 | 2. Core Query Flow | 0/TBD | Not started | - |
 | 3. Rate Limiting | 0/TBD | Not started | - |
