@@ -1,0 +1,51 @@
+{
+  "pages": {
+    "/_not-found/page": [
+      "static/chunks/webpack-fa09c178aaab7247.js",
+      "static/chunks/4bd1b696-c023c6e3521b1417.js",
+      "static/chunks/255-38b49df12a94ee57.js",
+      "static/chunks/main-app-d8c7509f1f4edffb.js",
+      "static/chunks/app/_not-found/page-4a41b5be8cae2754.js"
+    ],
+    "/layout": [
+      "static/chunks/webpack-fa09c178aaab7247.js",
+      "static/chunks/4bd1b696-c023c6e3521b1417.js",
+      "static/chunks/255-38b49df12a94ee57.js",
+      "static/chunks/main-app-d8c7509f1f4edffb.js",
+      "static/css/dee31174a217d7b1.css",
+      "static/chunks/720-8d5292a2a76a19bb.js",
+      "static/chunks/app/layout-ba9653f3cd35b3fb.js"
+    ],
+    "/page": [
+      "static/chunks/webpack-fa09c178aaab7247.js",
+      "static/chunks/4bd1b696-c023c6e3521b1417.js",
+      "static/chunks/255-38b49df12a94ee57.js",
+      "static/chunks/main-app-d8c7509f1f4edffb.js",
+      "static/chunks/545-514ab011c1d15134.js",
+      "static/chunks/847-a4bd22270690e70b.js",
+      "static/chunks/app/page-39b1ebd94d3fdbe1.js"
+    ],
+    "/query/page": [
+      "static/chunks/webpack-fa09c178aaab7247.js",
+      "static/chunks/4bd1b696-c023c6e3521b1417.js",
+      "static/chunks/255-38b49df12a94ee57.js",
+      "static/chunks/main-app-d8c7509f1f4edffb.js",
+      "static/chunks/545-514ab011c1d15134.js",
+      "static/chunks/494-74a08d2f9d55641e.js",
+      "static/chunks/720-8d5292a2a76a19bb.js",
+      "static/chunks/500-71bdaa52c2fd6075.js",
+      "static/chunks/app/query/page-ab014182b750f306.js"
+    ],
+    "/settings/page": [
+      "static/chunks/webpack-fa09c178aaab7247.js",
+      "static/chunks/4bd1b696-c023c6e3521b1417.js",
+      "static/chunks/255-38b49df12a94ee57.js",
+      "static/chunks/main-app-d8c7509f1f4edffb.js",
+      "static/chunks/545-514ab011c1d15134.js",
+      "static/chunks/494-74a08d2f9d55641e.js",
+      "static/chunks/847-a4bd22270690e70b.js",
+      "static/chunks/201-ee8c869d5f32a025.js",
+      "static/chunks/app/settings/page-783a4209fc0fdcfd.js"
+    ]
+  }
+}

@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { Sparkles } from "lucide-react";
+import { Sparkles, ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export default function SettingsHeader() {
   return (
@@ -14,6 +15,11 @@ export default function SettingsHeader() {
 
         <nav className="flex items-center gap-4">
           <span className="text-sm text-muted-foreground">Settings</span>
+          <Button asChild size="sm">
+            <Link href="/query" className="flex items-center gap-1">
+              Query <ArrowRight className="h-4 w-4" />
+            </Link>
+          </Button>
         </nav>
       </div>
     </header>

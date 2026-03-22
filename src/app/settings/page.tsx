@@ -1,6 +1,7 @@
 import { ApiKeysSection } from "@/components/providers/api-keys-section";
 import { SchemaInput } from "@/components/schema/schema-input";
 import { SchemaPreview } from "@/components/schema/schema-preview";
+import { QuotaSection } from "@/components/quota/quota-display";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import SettingsHeader from "./header";
 import { Database } from "lucide-react";
@@ -20,6 +21,8 @@ export default function SettingsPage() {
 
         <div className="space-y-6">
           <ApiKeysSection />
+
+          <QuotaSection />
 
           <Card>
             <CardHeader>

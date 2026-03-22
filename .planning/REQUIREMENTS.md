@@ -104,26 +104,26 @@ Which phases cover which requirements. Updated during roadmap creation.
 | PROV-05 | 1 - Foundation | Complete |
 | PROV-06 | 1 - Foundation | Complete |
 | PROV-07 | 1 - Foundation | Complete |
-| QUERY-01 | 2 - Core Query Flow | Pending |
-| QUERY-02 | 2 - Core Query Flow | Pending |
-| QUERY-03 | 2 - Core Query Flow | Pending |
-| QUERY-04 | 2 - Core Query Flow | Pending |
-| QUERY-05 | 2 - Core Query Flow | Pending |
-| QUERY-06 | 2 - Core Query Flow | Pending |
-| RESL-01 | 2 - Core Query Flow | Pending |
-| RESL-02 | 2 - Core Query Flow | Pending |
-| RESL-03 | 2 - Core Query Flow | Pending |
-| RESL-04 | 2 - Core Query Flow | Pending |
-| RATE-01 | 3 - Rate Limiting | Pending |
-| RATE-02 | 3 - Rate Limiting | Pending |
-| RATE-03 | 3 - Rate Limiting | Pending |
-| RATE-04 | 3 - Rate Limiting | Pending |
+| QUERY-01 | 2 - Core Query Flow | Complete |
+| QUERY-02 | 2 - Core Query Flow | Complete |
+| QUERY-03 | 2 - Core Query Flow | Complete |
+| QUERY-04 | 2 - Core Query Flow | Complete |
+| QUERY-05 | 2 - Core Query Flow | Complete |
+| QUERY-06 | 2 - Core Query Flow | Complete |
+| RESL-01 | 2 - Core Query Flow | Complete |
+| RESL-02 | 2 - Core Query Flow | Complete |
+| RESL-03 | 2 - Core Query Flow | Complete |
+| RESL-04 | 2 - Core Query Flow | Complete |
+| RATE-01 | 3 - Rate Limiting | Complete |
+| RATE-02 | 3 - Rate Limiting | Complete |
+| RATE-03 | 3 - Rate Limiting | Complete |
+| RATE-04 | 3 - Rate Limiting | Complete |
 | UI-01 | 1 - Foundation | Complete |
 | UI-02 | 1 - Foundation | Complete |
-| UI-03 | 2 - Core Query Flow | Pending |
+| UI-03 | 2 - Core Query Flow | Complete |
 | UI-04 | 1 - Foundation | Complete |
-| UI-05 | 2 - Core Query Flow | Pending |
-| UI-06 | 2 - Core Query Flow | Pending |
+| UI-05 | 2 - Core Query Flow | Complete |
+| UI-06 | 2 - Core Query Flow | Complete |
 
 **Coverage:**
 - v1 requirements: 30 total
@@ -132,4 +132,4 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 ---
 *Requirements defined: 2026-03-22*
-*Last updated: 2026-03-22 after Phase 1 execution (14/30 requirements complete)*
+*Last updated: 2026-03-22 after Phase 3 execution (27/30 requirements complete)*

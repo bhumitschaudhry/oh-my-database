@@ -1,0 +1,1 @@
+self.__REACT_LOADABLE_MANIFEST='{"app/query/page.tsx -> @/lib/ai-provider":{"id":584,"files":["static/chunks/584.f2473db4d6c91e61.js"]}}';
