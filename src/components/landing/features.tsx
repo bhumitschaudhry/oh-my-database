@@ -1,7 +1,7 @@
 "use client";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { MessageSquare, Database, KeyRound, Zap } from "lucide-react";
+import { MessageSquare, Database, KeyRound, Zap, Gem } from "lucide-react";
 
 const features = [
   {
@@ -27,6 +27,12 @@ const features = [
     title: "Instant results",
     description:
       "Get SQL results immediately. Review before execution for complete control.",
+  },
+  {
+    icon: Gem,
+    title: "Free tier with Gemini",
+    description:
+      "Get started for free with Google Gemini. 1,000 requests/month at no cost — no credit card required.",
   },
 ];
 
