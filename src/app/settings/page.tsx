@@ -1,5 +1,9 @@
 import { ApiKeysSection } from "@/components/providers/api-keys-section";
+import { SchemaInput } from "@/components/schema/schema-input";
+import { SchemaPreview } from "@/components/schema/schema-preview";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import SettingsHeader from "./header";
+import { Database } from "lucide-react";
 
 export default function SettingsPage() {
   return (
@@ -16,6 +20,19 @@ export default function SettingsPage() {
 
         <div className="space-y-6">
           <ApiKeysSection />
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Database className="h-5 w-5" />
+                Database Schema
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <SchemaInput />
+              <SchemaPreview />
+            </CardContent>
+          </Card>
         </div>
       </main>
     </div>
