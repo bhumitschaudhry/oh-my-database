@@ -93,37 +93,37 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| SCHM-01 | Phase 1 | Pending |
-| SCHM-02 | Phase 1 | Pending |
-| SCHM-03 | Phase 1 | Pending |
-| SCHM-04 | Phase 1 | Pending |
-| PROV-01 | Phase 1 | Pending |
-| PROV-02 | Phase 1 | Pending |
-| PROV-03 | Phase 1 | Pending |
-| PROV-04 | Phase 1 | Pending |
-| PROV-05 | Phase 1 | Pending |
-| PROV-06 | Phase 1 | Pending |
-| PROV-07 | Phase 1 | Pending |
-| QUERY-01 | Phase 2 | Pending |
-| QUERY-02 | Phase 2 | Pending |
-| QUERY-03 | Phase 2 | Pending |
-| QUERY-04 | Phase 2 | Pending |
-| QUERY-05 | Phase 2 | Pending |
-| QUERY-06 | Phase 2 | Pending |
-| RESL-01 | Phase 2 | Pending |
-| RESL-02 | Phase 2 | Pending |
-| RESL-03 | Phase 2 | Pending |
-| RESL-04 | Phase 2 | Pending |
-| RATE-01 | Phase 3 | Pending |
-| RATE-02 | Phase 3 | Pending |
-| RATE-03 | Phase 3 | Pending |
-| RATE-04 | Phase 3 | Pending |
-| UI-01 | Phase 1 | Pending |
-| UI-02 | Phase 1 | Pending |
-| UI-03 | Phase 2 | Pending |
-| UI-04 | Phase 1 | Pending |
-| UI-05 | Phase 2 | Pending |
-| UI-06 | Phase 2 | Pending |
+| SCHM-01 | 1 - Foundation | Pending |
+| SCHM-02 | 1 - Foundation | Pending |
+| SCHM-03 | 1 - Foundation | Pending |
+| SCHM-04 | 1 - Foundation | Pending |
+| PROV-01 | 1 - Foundation | Pending |
+| PROV-02 | 1 - Foundation | Pending |
+| PROV-03 | 1 - Foundation | Pending |
+| PROV-04 | 1 - Foundation | Pending |
+| PROV-05 | 1 - Foundation | Pending |
+| PROV-06 | 1 - Foundation | Pending |
+| PROV-07 | 1 - Foundation | Pending |
+| QUERY-01 | 2 - Core Query Flow | Pending |
+| QUERY-02 | 2 - Core Query Flow | Pending |
+| QUERY-03 | 2 - Core Query Flow | Pending |
+| QUERY-04 | 2 - Core Query Flow | Pending |
+| QUERY-05 | 2 - Core Query Flow | Pending |
+| QUERY-06 | 2 - Core Query Flow | Pending |
+| RESL-01 | 2 - Core Query Flow | Pending |
+| RESL-02 | 2 - Core Query Flow | Pending |
+| RESL-03 | 2 - Core Query Flow | Pending |
+| RESL-04 | 2 - Core Query Flow | Pending |
+| RATE-01 | 3 - Rate Limiting | Pending |
+| RATE-02 | 3 - Rate Limiting | Pending |
+| RATE-03 | 3 - Rate Limiting | Pending |
+| RATE-04 | 3 - Rate Limiting | Pending |
+| UI-01 | 1 - Foundation | Pending |
+| UI-02 | 1 - Foundation | Pending |
+| UI-03 | 2 - Core Query Flow | Pending |
+| UI-04 | 1 - Foundation | Pending |
+| UI-05 | 2 - Core Query Flow | Pending |
+| UI-06 | 2 - Core Query Flow | Pending |
 
 **Coverage:**
 - v1 requirements: 30 total
@@ -132,4 +132,4 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 ---
 *Requirements defined: 2026-03-22*
-*Last updated: 2026-03-22 after initial definition*
+*Last updated: 2026-03-22 after roadmap creation (traceability updated)*
