@@ -1,10 +1,9 @@
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 
-export type Provider = 'nvidia' | 'openai' | 'gemini' | 'anthropic' | 'openrouter';
+export type Provider = 'openai' | 'gemini' | 'anthropic' | 'openrouter';
 
 export const PROVIDER_LIMITS: Record<Provider, number> = {
-  nvidia: 10000,
   openai: 100,
   gemini: 1000,
   anthropic: 100,
@@ -76,7 +75,6 @@ export const useAppStore = create<AppState>()(
       schema: null,
       parsedSchema: null,
       quotas: {
-        nvidia: { requestsUsed: 0, lastReset: Date.now(), limit: PROVIDER_LIMITS.nvidia },
         openai: { requestsUsed: 0, lastReset: Date.now(), limit: PROVIDER_LIMITS.openai },
         gemini: { requestsUsed: 0, lastReset: Date.now(), limit: PROVIDER_LIMITS.gemini },
         anthropic: { requestsUsed: 0, lastReset: Date.now(), limit: PROVIDER_LIMITS.anthropic },
@@ -149,7 +147,6 @@ export const useAppStore = create<AppState>()(
 );
 
 export const PROVIDER_LABELS: Record<Provider, string> = {
-  nvidia: 'NVIDIA NIM',
   openai: 'OpenAI',
   gemini: 'Google Gemini',
   anthropic: 'Anthropic',
@@ -157,7 +154,6 @@ export const PROVIDER_LABELS: Record<Provider, string> = {
 };
 
 export const PROVIDER_ICONS: Record<Provider, string> = {
-  nvidia: 'GPU',
   openai: 'AI',
   gemini: 'Gem',
   anthropic: 'Human',

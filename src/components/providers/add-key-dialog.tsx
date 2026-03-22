@@ -22,7 +22,7 @@ import {
 import { useAppStore, Provider, PROVIDER_LABELS } from "@/stores/app-store";
 import { Plus, ChevronDown, Loader2 } from "lucide-react";
 
-const providers: Provider[] = ["openai", "anthropic", "gemini", "nvidia", "openrouter"];
+const providers: Provider[] = ["openai", "anthropic", "gemini", "openrouter"];
 
 export function AddKeyDialog() {
   const [open, setOpen] = useState(false);

@@ -1,10 +1,6 @@
 import { Provider, ProviderKey, ParseResult, useAppStore } from '@/stores/app-store';
 
 const PROVIDER_CONFIGS: Record<Provider, { endpoint: string; model: string }> = {
-  nvidia: {
-    endpoint: 'https://integrate.api.nvidia.com/v1/chat/completions',
-    model: 'nvidia/llama-3.1-nemotron-70b-instruct',
-  },
   openai: {
     endpoint: 'https://api.openai.com/v1/chat/completions',
     model: 'gpt-4o-mini',
