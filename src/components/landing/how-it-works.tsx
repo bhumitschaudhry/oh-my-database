@@ -35,7 +35,7 @@ export function HowItWorks() {
           Get started in minutes
         </h2>
         <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-          No complex database drivers or server-side setups. oh-my-database works 
+          No complex database drivers or server-side setups. ohmydatabase works 
           wherever your browser does.
         </p>
       </div>

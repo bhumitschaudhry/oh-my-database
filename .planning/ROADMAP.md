@@ -1,15 +1,16 @@
-# Roadmap: QueryForge
+# Roadmap: oh-my-database
 
 ## Overview
 
-QueryForge delivers a client-side text-to-SQL experience where non-technical users paste their database schema, add their own AI API keys, and query their data using natural language. The journey builds from foundation (schema parsing, API key management) through core AI-powered SQL generation to polish features (rate limiting).
+oh-my-database (renaming to ohmydatabase) delivers a client-side text-to-SQL experience where non-technical users paste their database schema, add their own AI API keys, and query their data using natural language. The journey builds from foundation (schema parsing, API key management) through core AI-powered SQL generation to polish features (rate limiting).
 
 ## Phases
 
 - [x] **Phase 1: Foundation** - Project scaffold, schema input, API key management, landing page (2026-03-22)
 - [x] **Phase 2: Core Query Flow** - AI integration, SQL generation, query execution, results display (2026-03-22)
 - [x] **Phase 3: Rate Limiting** - API quota tracking, enforcement, persistence across sessions (2026-03-22)
-- [ ] **Phase 4: Visual Redesign** - Modern startup-style landing page (2026-03-22)
+- [x] **Phase 4: Visual Redesign** - Modern startup-style landing page (2026-03-22)
+- [ ] **Phase 5: Branding Update** - Rename oh-my-database to ohmydatabase and remove Sparkles icon (2026-03-22)
 
 ## Phase Details
 
@@ -64,16 +65,29 @@ QueryForge delivers a client-side text-to-SQL experience where non-technical use
   5. New CTA section added before the footer ✓
   6. Footer is refined with more links and better structure ✓
   7. Mobile responsiveness is maintained across all sections ✓
-**Plans**: 0/2
+**Plans**: 2/2 (04-01, 04-02)
+
+### Phase 5: Branding Update
+**Goal**: Rename oh-my-database to ohmydatabase across the application and remove the Sparkles icon from the logo.
+**Depends on**: Phase 4
+**Requirements**: BRAND-01, BRAND-02, BRAND-03
+**Success Criteria** (what must be TRUE):
+  1. Logo text is "ohmydatabase" everywhere
+  2. Sparkles icon is removed from the logo
+  3. Package name is updated to ohmydatabase
+  4. README reflects the new name
+  5. Storage name in app-store is updated
+**Plans**: [To be planned]
 
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 1 → 2 → 3 → 4
+Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation | 3/3 | Complete | 2026-03-22 |
 | 2. Core Query Flow | 3/3 | Complete | 2026-03-22 |
 | 3. Rate Limiting | 3/3 | Complete | 2026-03-22 |
-| 4. Visual Redesign | 0/2 | In Progress | - |
+| 4. Visual Redesign | 2/2 | Complete | 2026-03-22 |
+| 5. Branding Update | 0/1 | In Progress | - |

@@ -56,7 +56,7 @@ export function Features() {
           Powerful features for every developer
         </h2>
         <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-          Built for speed, security, and simplicity. oh-my-database gives you the power 
+          Built for speed, security, and simplicity. ohmydatabase gives you the power 
           of a senior DBA in a simple chat interface.
         </p>
       </div>
