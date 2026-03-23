@@ -1,5 +1,92 @@
 import { Provider, ProviderKey, ParseResult, useAppStore } from '@/stores/app-store';
 
+interface RateLimitEntry {
+  count: number;
+  resetTime: number;
+}
+
+const RATE_LIMIT_WINDOW_MS = 60000;
+const MAX_REQUESTS_PER_WINDOW = 10;
+const rateLimitStore = new Map<string, RateLimitEntry>();
+
+setInterval(() => {
+  const now = Date.now();
+  for (const [key, entry] of rateLimitStore.entries()) {
+    if (now >= entry.resetTime) {
+      rateLimitStore.delete(key);
+    }
+  }
+}, 60000);
+
+function checkRateLimit(provider: Provider): { allowed: boolean; retryAfter?: number } {
+  const now = Date.now();
+  const key = `rate_${provider}`;
+  const entry = rateLimitStore.get(key);
+  
+  if (!entry || now >= entry.resetTime) {
+    rateLimitStore.set(key, { count: 1, resetTime: now + RATE_LIMIT_WINDOW_MS });
+    return { allowed: true };
+  }
+  
+  if (entry.count >= MAX_REQUESTS_PER_WINDOW) {
+    return { allowed: false, retryAfter: Math.ceil((entry.resetTime - now) / 1000) };
+  }
+  
+  entry.count++;
+  return { allowed: true };
+}
+
+const ALLOWED_ORIGINS = [
+  'api.openai.com',
+  'generativelanguage.googleapis.com',
+  'api.anthropic.com',
+  'openrouter.ai',
+];
+
+function isHttpsUrl(url: string): boolean {
+  try {
+    const parsed = new URL(url);
+    return parsed.protocol === 'https:' && ALLOWED_ORIGINS.includes(parsed.hostname);
+  } catch {
+    return false;
+  }
+}
+
+function sanitizeInput(input: string): string {
+  const maxLength = 1000;
+  let sanitized = input.trim();
+  
+  if (sanitized.length > maxLength) {
+    sanitized = sanitized.substring(0, maxLength);
+  }
+  
+  return sanitized
+    .replace(/[\x00-\x1F\x7F]/g, '')
+    .replace(/<script|javascript:|on\w+=/gi, '')
+    .substring(0, maxLength);
+}
+
+function sanitizeApiError(message: string): string {
+  const sensitivePatterns = [
+    /api[_-]?key["']?\s*[:=]\s*["']?[A-Za-z0-9_-]+/gi,
+    /bearer\s+[A-Za-z0-9_-]+/gi,
+    /token["']?\s*[:=]\s*["']?[A-Za-z0-9_-]+/gi,
+    /password["']?\s*[:=]\s*["']?[^\s"']+/gi,
+    /authorization/i,
+  ];
+  
+  let sanitized = message;
+  for (const pattern of sensitivePatterns) {
+    sanitized = sanitized.replace(pattern, '[REDACTED]');
+  }
+  
+  return sanitized
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .substring(0, 200);
+}
+
 const PROVIDER_CONFIGS: Record<Provider, { endpoint: string; model: string }> = {
   openai: {
     endpoint: 'https://api.openai.com/v1/chat/completions',
@@ -57,6 +144,11 @@ export async function generateSQL(
   parsedSchema: ParseResult,
   provider: Provider
 ): Promise<string> {
+  const rateLimit = checkRateLimit(provider);
+  if (!rateLimit.allowed) {
+    throw new Error(`Rate limit exceeded. Please wait ${rateLimit.retryAfter} seconds before trying again.`);
+  }
+
   const store = useAppStore.getState();
   const quota = store.quotas[provider];
   
@@ -70,8 +162,14 @@ export async function generateSQL(
   }
 
   const config = PROVIDER_CONFIGS[provider];
+  
+  if (!isHttpsUrl(config.endpoint)) {
+    throw new Error('Invalid endpoint: HTTPS required');
+  }
+
+  const sanitizedQuestion = sanitizeInput(question);
   const schemaStr = formatSchemaForPrompt(parsedSchema);
-  const prompt = buildPrompt(question, schemaStr);
+  const prompt = buildPrompt(sanitizedQuestion, schemaStr);
 
   const headers: Record<string, string> = {
     'Content-Type': 'application/json',
@@ -102,8 +200,18 @@ export async function generateSQL(
   });
 
   if (!response.ok) {
-    const errorText = await response.text();
-    throw new Error(`API error (${response.status}): ${errorText}`);
+    let errorMessage = 'API request failed';
+    
+    try {
+      const errorData = await response.json();
+      if (errorData.error?.message) {
+        errorMessage = sanitizeApiError(errorData.error.message);
+      }
+    } catch {
+      errorMessage = `API error (${response.status})`;
+    }
+    
+    throw new Error(errorMessage);
   }
 
   const data = await response.json();

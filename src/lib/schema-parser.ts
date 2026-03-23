@@ -1,5 +1,11 @@
 import { ParsedTable, ParsedColumn, ParseResult } from "@/stores/app-store";
 
+const MAX_SCHEMA_LENGTH = 500000;
+const MAX_TABLE_NAME_LENGTH = 128;
+const MAX_COLUMN_NAME_LENGTH = 128;
+const MAX_TABLES = 100;
+const MAX_COLUMNS_PER_TABLE = 1000;
+
 export function parseSchema(ddl: string): ParseResult {
   if (!ddl.trim()) {
     return {
@@ -12,18 +18,43 @@ export function parseSchema(ddl: string): ParseResult {
     };
   }
 
-  const dialect = detectDialect(ddl);
+  if (ddl.length > MAX_SCHEMA_LENGTH) {
+    return {
+      success: false,
+      tables: [],
+      tableCount: 0,
+      columnCount: 0,
+      relationshipCount: 0,
+      error: `Schema exceeds maximum length of ${MAX_SCHEMA_LENGTH} characters.`,
+    };
+  }
+
+  const sanitizedDdl = ddl.replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, '');
+  const dialect = detectDialect(sanitizedDdl);
   const tables: ParsedTable[] = [];
   let relationshipCount = 0;
 
-  const createTableRegex = /CREATE\s+TABLE\s+(?:IF\s+NOT\s+EXISTS\s+)?[`"']?(\w+)[`"']?\s*\(([\s\S]*?)\)(?:\s*;|$)/gi;
+  const safeTableName = (name: string): string => {
+    return name.replace(/[^a-zA-Z0-9_]/g, '').substring(0, MAX_TABLE_NAME_LENGTH);
+  };
+
+  const createTableRegex = /(?:^|;)\s*CREATE\s+TABLE\s+(?:IF\s+NOT\s+EXISTS\s+)?(?:[`"']?(\w+)[`"']?)\s*\(\s*((?:[^;)]+|\)(?:[^;]|$))+)\s*\)(?:\s*;|$)/gi;
   let match;
 
-  while ((match = createTableRegex.exec(ddl)) !== null) {
-    const tableName = match[1];
+  while ((match = createTableRegex.exec(sanitizedDdl)) !== null) {
+    if (tables.length >= MAX_TABLES) {
+      break;
+    }
+    const tableName = safeTableName(match[1]);
+    if (!tableName) continue;
+    
     const columnsBlock = match[2];
 
-    const columns = parseColumns(columnsBlock, dialect);
+    const columns = parseColumns(columnsBlock, dialect, safeTableName);
+
+    if (columns.length > MAX_COLUMNS_PER_TABLE) {
+      continue;
+    }
 
     const relationships = columns.filter(
       (c) => c.foreignKey !== undefined
@@ -91,7 +122,8 @@ function detectDialect(
 
 function parseColumns(
   columnsBlock: string,
-  dialect: "postgresql" | "mysql" | "sqlite"
+  dialect: "postgresql" | "mysql" | "sqlite",
+  safeName: (name: string) => string
 ): ParsedColumn[] {
   const columns: ParsedColumn[] = [];
 
@@ -103,7 +135,7 @@ function parseColumns(
       continue;
     }
 
-    const column = parseColumnDefinition(trimmedLine, dialect);
+    const column = parseColumnDefinition(trimmedLine, dialect, safeName);
     if (column) {
       columns.push(column);
     }
@@ -141,7 +173,8 @@ function splitColumnDefinitions(columnsBlock: string): string[] {
 
 function parseColumnDefinition(
   line: string,
-  dialect: "postgresql" | "mysql" | "sqlite"
+  dialect: "postgresql" | "mysql" | "sqlite",
+  safeName: (name: string) => string
 ): ParsedColumn | null {
   const cleanLine = line.trim();
   if (!cleanLine) return null;
@@ -149,7 +182,9 @@ function parseColumnDefinition(
   const words = cleanLine.split(/\s+/);
   if (words.length < 2) return null;
 
-  let name = words[0].replace(/[`"']/g, "");
+  let name = safeName(words[0].replace(/[`"']/g, ""));
+  if (!name || name.length > MAX_COLUMN_NAME_LENGTH) return null;
+  
   const type = words.slice(1).join(" ").toUpperCase();
 
   const nullable = !type.includes("NOT NULL") && !type.includes("PRIMARY KEY");
@@ -164,10 +199,12 @@ function parseColumnDefinition(
     /REFERENCES\s+[`"']?(\w+)[`"']?\s*\([^)]+\)/i
   );
   if (referencesMatch) {
-    const refTable = referencesMatch[1];
+    const refTable = safeName(referencesMatch[1]);
     const colMatch = cleanLine.match(/\(([^)]+)\)\s*REFERENCES/i);
-    const refColumn = colMatch ? colMatch[1].replace(/[`"']/g, "") : "id";
-    foreignKey = { table: refTable, column: refColumn };
+    const refColumn = safeName(colMatch ? colMatch[1].replace(/[`"']/g, "") : "id");
+    if (refTable && refColumn) {
+      foreignKey = { table: refTable, column: refColumn };
+    }
   }
 
   return {

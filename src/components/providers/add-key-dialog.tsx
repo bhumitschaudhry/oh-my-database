@@ -24,6 +24,13 @@ import { Plus, ChevronDown, Loader2 } from "lucide-react";
 
 const providers: Provider[] = ["openai", "anthropic", "gemini", "openrouter"];
 
+const providerEndpoints: Record<Provider, string> = {
+  openai: 'https://api.openai.com/v1/chat/completions',
+  anthropic: 'https://api.anthropic.com/v1/messages',
+  gemini: 'https://generativelanguage.googleapis.com/v1beta/openai/chat/completions',
+  openrouter: 'https://openrouter.ai/api/v1/chat/completions',
+};
+
 export function AddKeyDialog() {
   const [open, setOpen] = useState(false);
   const [selectedProvider, setSelectedProvider] = useState<Provider | null>(null);
@@ -62,12 +69,48 @@ export function AddKeyDialog() {
   };
 
   const validateApiKey = async (provider: Provider, key: string): Promise<boolean> => {
-    await new Promise((resolve) => setTimeout(resolve, 500));
-    
-    if (key.length < 10) return false;
-    if (!key.startsWith("sk-") && provider === "openai") return false;
-    
-    return true;
+    const keyPatterns: Record<Provider, RegExp> = {
+      openai: /^sk-[A-Za-z0-9_-]{20,}$/,
+      anthropic: /^sk-ant-[A-Za-z0-9_-]{20,}$/,
+      gemini: /^AIza[A-Za-z0-9_-]{30,}$/,
+      openrouter: /^sk-or-v[A-Za-z0-9_-]{20,}$/,
+    };
+
+    const pattern = keyPatterns[provider];
+    if (!pattern || !pattern.test(key)) {
+      return false;
+    }
+
+    try {
+      const testEndpoint = providerEndpoints[provider];
+      const headers: Record<string, string> = {
+        'Content-Type': 'application/json',
+      };
+
+      if (provider === 'anthropic') {
+        headers['x-api-key'] = key;
+        headers['anthropic-version'] = '2023-06-01';
+      } else {
+        headers['Authorization'] = `Bearer ${key}`;
+      }
+
+      const response = await fetch(testEndpoint, {
+        method: 'POST',
+        headers,
+        body: JSON.stringify(provider === 'anthropic' 
+          ? { model: 'claude-3-haiku-20240307', max_tokens: 1, messages: [{ role: 'user', content: 'test' }] }
+          : { model: 'gpt-4o-mini', max_tokens: 1, messages: [{ role: 'user', content: 'test' }] }
+        ),
+      });
+
+      if (response.status === 401 || response.status === 403) {
+        return false;
+      }
+
+      return response.ok;
+    } catch {
+      return false;
+    }
   };
 
   return (
