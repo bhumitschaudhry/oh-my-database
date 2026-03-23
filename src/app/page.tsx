@@ -3,6 +3,7 @@ import { Hero } from "@/components/landing/hero";
 import { Features } from "@/components/landing/features";
 import { HowItWorks } from "@/components/landing/how-it-works";
 import { Github, Twitter, Linkedin } from "lucide-react";
+import { PrivacyDialog, TermsDialog } from "@/components/landing/footer-legal";
 import Link from "next/link";
 
 export default function Home() {
@@ -94,8 +95,16 @@ export default function Home() {
               <div>
                 <h3 className="text-sm font-semibold uppercase tracking-wider">Legal</h3>
                 <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-                  <li><Link href="#" className="hover:text-foreground">Privacy</Link></li>
-                  <li><Link href="#" className="hover:text-foreground">Terms</Link></li>
+                  <li>
+                    <PrivacyDialog>
+                      <button className="hover:text-foreground cursor-pointer">Privacy</button>
+                    </PrivacyDialog>
+                  </li>
+                  <li>
+                    <TermsDialog>
+                      <button className="hover:text-foreground cursor-pointer">Terms</button>
+                    </TermsDialog>
+                  </li>
                 </ul>
               </div>
             </div>
