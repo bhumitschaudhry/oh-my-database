@@ -77,12 +77,13 @@ None yet.
 
 | # | Description | Date | Commit | Directory |
 |---|-------------|------|--------|-----------|
+| 260323-8ud | Make popups for the Privacy and Terms buttons | 2026-03-23 | a17041d3 | [260323-8ud-make-popups-for-the-privacy-and-terms-bu](./quick/260323-8ud-make-popups-for-the-privacy-and-terms-bu/) |
 | 260322-iqw | Create a comprehensive and stylish readme for this application | 2026-03-22 | 38cff1ec | [260322-iqw-create-a-comprehensive-and-stylish-readm](./quick/260322-iqw-create-a-comprehensive-and-stylish-readm/) |
 | 260322-j6n | Rename the entire project to oh-my-database | 2026-03-22 | 83d06493 | [260322-j6n-rename-the-entire-project-to-oh-my-datab](./quick/260322-j6n-rename-the-entire-project-to-oh-my-datab/) |
 | 260322-jgk | Remove NVIDIA NIM provider, add Gemini free tier highlight | 2026-03-22 | ee91af72 | [260322-jgk-remove-nvidia-nim-functionality-and-enco](./quick/260322-jgk-remove-nvidia-nim-functionality-and-enco/) |
 
 ## Session Continuity
 
-Last session: 2026-03-22T14:02:50.000Z
-Stopped at: Quick task 260322-jgk complete — NVIDIA NIM removed, Gemini free tier highlighted
+Last session: 2026-03-23T00:00:00.000Z
+Stopped at: Quick task 260323-8ud complete — Privacy and Terms modal dialogs added
 Resume file: None - milestone complete
