@@ -140,7 +140,7 @@ export const useAppStore = create<AppState>()(
       },
     }),
     {
-      name: 'oh-my-database-storage',
+      name: 'ohmydatabase-storage',
       storage: createJSONStorage(() => localStorage),
     }
   )
