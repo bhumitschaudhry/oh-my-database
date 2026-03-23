@@ -2,7 +2,7 @@ import { Header } from "@/components/landing/header";
 import { Hero } from "@/components/landing/hero";
 import { Features } from "@/components/landing/features";
 import { HowItWorks } from "@/components/landing/how-it-works";
-import { Sparkles, Github, Twitter, Linkedin } from "lucide-react";
+import { Github, Twitter, Linkedin } from "lucide-react";
 import Link from "next/link";
 
 export default function Home() {
@@ -55,10 +55,7 @@ export default function Home() {
             <div className="grid grid-cols-2 gap-8 md:grid-cols-4 lg:grid-cols-5">
               <div className="col-span-2 lg:col-span-2">
                 <Link href="/" className="flex items-center gap-2">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600 text-white">
-                    <Sparkles className="h-5 w-5" />
-                  </div>
-                  <span className="text-lg font-bold">oh-my-database</span>
+                  <span className="text-lg font-bold">ohmydatabase</span>
                 </Link>
                 <p className="mt-4 max-w-xs text-sm text-muted-foreground">
                   Query your database using natural language. Fast, secure, and powered by Gemini.
@@ -104,7 +101,7 @@ export default function Home() {
             </div>
             
             <div className="mt-12 border-t pt-8 text-center text-sm text-muted-foreground">
-              <p>© {new Date().getFullYear()} oh-my-database. All rights reserved.</p>
+              <p>© {new Date().getFullYear()} ohmydatabase. All rights reserved.</p>
             </div>
           </div>
         </footer>

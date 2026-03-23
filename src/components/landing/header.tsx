@@ -2,17 +2,14 @@
 
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Sparkles, Github } from "lucide-react";
+import { Github } from "lucide-react";
 
 export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-6">
         <Link href="/" className="flex items-center gap-2 hover:opacity-90 transition-opacity">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600 text-white">
-            <Sparkles className="h-5 w-5" />
-          </div>
-          <span className="text-lg font-bold tracking-tight">oh-my-database</span>
+          <span className="text-lg font-bold tracking-tight">ohmydatabase</span>
         </Link>
 
         <nav className="hidden md:flex items-center gap-8 text-sm font-medium">

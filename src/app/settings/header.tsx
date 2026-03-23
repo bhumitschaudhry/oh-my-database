@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Sparkles, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function SettingsHeader() {
@@ -9,8 +9,7 @@ export default function SettingsHeader() {
     <header className="border-b bg-background">
       <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-6">
         <Link href="/" className="flex items-center gap-2">
-          <Sparkles className="h-6 w-6 text-blue-600" />
-          <span className="text-lg font-bold">oh-my-database</span>
+          <span className="text-lg font-bold">ohmydatabase</span>
         </Link>
 
         <nav className="flex items-center gap-4">
