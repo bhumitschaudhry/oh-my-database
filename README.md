@@ -1,4 +1,4 @@
-# 🔮 oh-my-database
+# 🔮 ohmydatabase
 
 ### Transform Natural Language into SQL Queries
 
@@ -6,7 +6,7 @@
 [![License](https://img.shields.io/badge/license-MIT-blue)](#)
 [![Platform](https://img.shields.io/badge/platform-GitHub%20Pages-cyan)](#)
 
-> **oh-my-database** is a browser-based text-to-SQL agent that helps non-technical users explore and understand their database data—without writing SQL or installing software.
+> **ohmydatabase** is a browser-based text-to-SQL agent that helps non-technical users explore and understand their database data—without writing SQL or installing software.
 
 ---
 
@@ -28,7 +28,7 @@
 
 1. **Open the App**
    ```
-   https://yourusername.github.io/oh-my-database
+   https://yourusername.github.io/ohmydatabase
    ```
 
 2. **Paste Your Schema**
@@ -52,7 +52,7 @@
 
 ### Example Queries
 
-| What You Ask | oh-my-database Generates |
+| What You Ask | ohmydatabase Generates |
 |--------------|---------------------|
 | "How many users signed up this month?" | `SELECT COUNT(*) FROM users WHERE created_at >= DATE_TRUNC('month', CURRENT_DATE);` |
 | "Show me the top 10 products by revenue" | `SELECT name, SUM(revenue) as total FROM products GROUP BY name ORDER BY total DESC LIMIT 10;` |
@@ -139,6 +139,6 @@ This project is licensed under the MIT License.
 
 **Built with ❤️ for non-technical database users**
 
-*oh-my-database — Democratizing data access*
+*ohmydatabase — Democratizing data access*
 
 </div>
