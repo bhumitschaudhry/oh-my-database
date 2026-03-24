@@ -2,7 +2,6 @@
 
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Github } from "lucide-react";
 
 export function Header() {
   return (
@@ -18,9 +17,6 @@ export function Header() {
           </Link>
           <Link href="#how-it-works" className="text-muted-foreground hover:text-foreground transition-colors">
             How it works
-          </Link>
-          <Link href="https://github.com" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
-            <Github className="h-5 w-5" />
           </Link>
         </nav>
 

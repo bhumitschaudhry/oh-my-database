@@ -2,7 +2,7 @@ import { Header } from "@/components/landing/header";
 import { Hero } from "@/components/landing/hero";
 import { Features } from "@/components/landing/features";
 import { HowItWorks } from "@/components/landing/how-it-works";
-import { Github, Twitter, Linkedin } from "lucide-react";
+import { Github, Linkedin } from "lucide-react";
 import { PrivacyDialog, TermsDialog } from "@/components/landing/footer-legal";
 import Link from "next/link";
 
@@ -62,13 +62,10 @@ export default function Home() {
                   Query your database using natural language. Fast, secure, and powered by Gemini.
                 </p>
                 <div className="mt-6 flex gap-4">
-                  <Link href="#" className="text-muted-foreground hover:text-blue-600 transition-colors">
-                    <Twitter className="h-5 w-5" />
-                  </Link>
-                  <Link href="#" className="text-muted-foreground hover:text-blue-600 transition-colors">
+                  <Link href="https://github.com/bhumitschaudhry/oh-my-database" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-blue-600 transition-colors">
                     <Github className="h-5 w-5" />
                   </Link>
-                  <Link href="#" className="text-muted-foreground hover:text-blue-600 transition-colors">
+                  <Link href="https://www.linkedin.com/in/bhumitchaudhry/" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-blue-600 transition-colors">
                     <Linkedin className="h-5 w-5" />
                   </Link>
                 </div>
