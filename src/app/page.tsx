@@ -81,15 +81,6 @@ export default function Home() {
               </div>
 
               <div>
-                <h3 className="text-sm font-semibold uppercase tracking-wider">Resources</h3>
-                <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-                  <li><Link href="#" className="hover:text-foreground">Documentation</Link></li>
-                  <li><Link href="#" className="hover:text-foreground">GitHub</Link></li>
-                  <li><Link href="#" className="hover:text-foreground">API Reference</Link></li>
-                </ul>
-              </div>
-
-              <div>
                 <h3 className="text-sm font-semibold uppercase tracking-wider">Legal</h3>
                 <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
                   <li>
