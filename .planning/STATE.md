@@ -87,6 +87,7 @@ None yet.
 | 260322-jgk | Remove NVIDIA NIM provider, add Gemini free tier highlight | 2026-03-22 | ee91af72 | [260322-jgk-remove-nvidia-nim-functionality-and-enco](./quick/260322-jgk-remove-nvidia-nim-functionality-and-enco/) |
 
 | 260327-ci9 | Analyze codebase for bugs/issues | 2026-03-27 | | [260327-ci9-fix-it](./quick/260327-ci9-fix-it/) |
+| 260327-cv1 | Fix get started flow: Next button, copy, language selector | 2026-03-27 | cc76470a | [260327-cv1-fix-get-started-flow-unable-to-click-nex](./quick/260327-cv1-fix-get-started-flow-unable-to-click-nex/) |
 
 ## Session Continuity
 
