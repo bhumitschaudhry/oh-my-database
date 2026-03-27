@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useAppStore } from "@/stores/app-store";
 import { parseSchema } from "@/lib/schema-parser";
-import { DB_COMMANDS, DB_LABELS, DBType } from "@/lib/db-commands";
+import { DB_COMMANDS, DB_LABELS, DBType, Language, LANGUAGE_LABELS, LOCALIZED_COMMANDS } from "@/lib/db-commands";
 import { 
   Database, 
   Code, 
@@ -25,15 +25,27 @@ import { Badge } from "@/components/ui/badge";
 export function SetupWizard() {
   const [step, setStep] = useState(1);
   const [dbType, setDbType] = useState<DBType>("postgresql");
+  const [language, setLanguage] = useState<Language>("en");
   const [schemaInput, setSchemaInput] = useState("");
   const [apiKey, setApiKey] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [copySuccess, setCopySuccess] = useState(false);
 
   const { setSchema, setParsedSchema, addProviderKey, setActiveProvider } = useAppStore();
 
-  const copyCommand = () => {
-    navigator.clipboard.writeText(DB_COMMANDS[dbType]);
+  const currentCommand = LOCALIZED_COMMANDS[language][dbType];
+
+  const copyCommand = async () => {
+    try {
+      await navigator.clipboard.writeText(currentCommand);
+      setCopySuccess(true);
+      setTimeout(() => setCopySuccess(false), 2000);
+    } catch (err) {
+      console.error("Failed to copy:", err);
+      setError("Failed to copy to clipboard");
+      setTimeout(() => setError(null), 2000);
+    }
   };
 
   const handleNext = () => {
@@ -125,20 +137,35 @@ export function SetupWizard() {
                 ))}
               </div>
               <div className="space-y-2">
-                <Label className="flex items-center gap-2">
-                  <Terminal className="w-4 h-4" /> Extraction Command
-                </Label>
+                <div className="flex items-center justify-between">
+                  <Label className="flex items-center gap-2">
+                    <Terminal className="w-4 h-4" /> Extraction Command
+                  </Label>
+                  <select
+                    value={language}
+                    onChange={(e) => setLanguage(e.target.value as Language)}
+                    className="text-xs bg-background border rounded px-2 py-1"
+                  >
+                    {(Object.keys(LANGUAGE_LABELS) as Language[]).map((lang) => (
+                      <option key={lang} value={lang}>{LANGUAGE_LABELS[lang]}</option>
+                    ))}
+                  </select>
+                </div>
                 <div className="relative group">
                   <pre className="bg-secondary p-4 rounded-md overflow-x-auto text-sm font-mono border border-border">
-                    {DB_COMMANDS[dbType]}
+                    {currentCommand}
                   </pre>
                   <Button 
                     variant="ghost" 
                     size="icon" 
-                    className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity"
+                    className="absolute top-2 right-2 opacity-100 hover:bg-accent"
                     onClick={copyCommand}
                   >
-                    <Copy className="w-4 h-4" />
+                    {copySuccess ? (
+                      <CheckCircle2 className="w-4 h-4 text-green-500" />
+                    ) : (
+                      <Copy className="w-4 h-4" />
+                    )}
                   </Button>
                 </div>
                 <p className="text-xs text-muted-foreground italic">
