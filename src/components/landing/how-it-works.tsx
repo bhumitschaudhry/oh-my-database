@@ -1,29 +1,31 @@
 "use client";
 
-import { Card, CardContent } from "@/components/ui/card";
-import { FileCode2, Settings2, Sparkles, MoveRight } from "lucide-react";
+import { Database, BrainCircuit, Terminal, MoveRight } from "lucide-react";
 
 const steps = [
   {
     number: "01",
-    icon: FileCode2,
+    icon: Database,
     title: "Import Schema",
     description: "Export your database schema as SQL and paste it. We index it locally in your browser.",
-    color: "blue",
+    bgClass: "bg-blue-600 shadow-blue-500/20",
+    borderClass: "border-blue-100 dark:border-blue-900",
   },
   {
     number: "02",
-    icon: Settings2,
+    icon: BrainCircuit,
     title: "Configure AI",
     description: "Connect your Gemini or OpenAI API key. We use it to translate your questions to SQL.",
-    color: "indigo",
+    bgClass: "bg-indigo-600 shadow-indigo-500/20",
+    borderClass: "border-indigo-100 dark:border-indigo-900",
   },
   {
     number: "03",
-    icon: Sparkles,
+    icon: Terminal,
     title: "Ask & Execute",
     description: "Ask questions like 'Show me monthly sales' and execute the generated SQL instantly.",
-    color: "violet",
+    bgClass: "bg-violet-600 shadow-violet-500/20",
+    borderClass: "border-violet-100 dark:border-violet-900",
   },
 ];
 
@@ -46,9 +48,9 @@ export function HowItWorks() {
         
         {steps.map((step, index) => (
           <div key={index} className="relative group">
-            <div className={`mx-auto mb-8 flex h-16 w-16 items-center justify-center rounded-2xl bg-${step.color}-600 text-white shadow-xl shadow-${step.color}-500/20 group-hover:scale-110 transition-transform duration-300 relative z-10`}>
+            <div className={`mx-auto mb-8 flex h-16 w-16 items-center justify-center rounded-2xl text-white shadow-xl ${step.bgClass} group-hover:scale-110 transition-transform duration-300 relative z-10`}>
               <step.icon className="h-8 w-8" />
-              <div className="absolute -top-3 -right-3 flex h-8 w-8 items-center justify-center rounded-full bg-white dark:bg-slate-950 border-2 border-slate-100 dark:border-slate-800 text-xs font-bold text-slate-900 dark:text-white">
+              <div className={`absolute -top-3 -right-3 flex h-8 w-8 items-center justify-center rounded-full bg-white dark:bg-slate-950 border-2 ${step.borderClass} text-xs font-bold text-slate-900 dark:text-white`}>
                 {step.number}
               </div>
             </div>
