@@ -61,6 +61,8 @@ export default function QueryPage() {
       const { generateSQL } = await import('@/lib/ai-provider');
       const sql = await generateSQL(question, parsedSchema, activeProvider);
       setGeneratedSql(sql);
+      await navigator.clipboard.writeText(sql);
+      toast.success('SQL generated and copied to clipboard');
     } catch (err) {
       const msg = err instanceof Error ? err.message : 'Failed to generate SQL';
       setError(msg);

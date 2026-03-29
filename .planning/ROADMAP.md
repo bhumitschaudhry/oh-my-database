@@ -91,3 +91,13 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 | 3. Rate Limiting | 3/3 | Complete | 2026-03-22 |
 | 4. Visual Redesign | 2/2 | Complete | 2026-03-22 |
 | 5. Branding Update | 0/1 | In Progress | - |
+
+### Phase 6: Get this application ready for production deployment
+
+**Goal:** [To be planned]
+**Requirements**: TBD
+**Depends on:** Phase 5
+**Plans:** 0 plans
+
+Plans:
+- [ ] TBD (run /gsd:plan-phase 6 to break down)

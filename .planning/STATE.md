@@ -3,9 +3,9 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: completed
-stopped_at: "Completed quick task 260329-7uv: Fix copy button error display on step 1"
-last_updated: "2026-03-29T05:44:22.947Z"
-last_activity: "2026-03-22 — Completed quick task 260322-j6n: Rename the entire project to oh-my-database"
+stopped_at: "Completed quick task 260329-86s: Remove language selection dropdown from setup wizard"
+last_updated: "2026-03-29T05:57:01.690Z"
+last_activity: "2026-03-29 - Completed quick task 260329-86s: Remove the language selection option on the first page of the flow"
 progress:
   total_phases: 6
   completed_phases: 1
@@ -90,9 +90,10 @@ None yet.
 | 260327-cv1 | Fix get started flow: Next button, copy, language selector | 2026-03-27 | cc76470a | [260327-cv1-fix-get-started-flow-unable-to-click-nex](./quick/260327-cv1-fix-get-started-flow-unable-to-click-nex/) |
 | 260329-7sy | Fix MySQL and SQLite buttons not clickable on first page | 2026-03-29 | a1dc605f | [260329-7sy-fix-mysql-and-sqlite-buttons-not-clickab](./quick/260329-7sy-fix-mysql-and-sqlite-buttons-not-clickab/) |
 | 260329-7uv | Fix copy button error display on step 1 | 2026-03-29 | 7000a0d2 | [260329-7uv-the-copy-buttons-on-the-first-page-of-th](./quick/260329-7uv-the-copy-buttons-on-the-first-page-of-th/) |
+| 260329-86s | Remove language selection dropdown from setup wizard | 2026-03-29 | a449bf23 | [260329-86s-remove-the-language-selection-option-on-](./quick/260329-86s-remove-the-language-selection-option-on-/) |
 
 ## Session Continuity
 
-Last session: 2026-03-29T05:44:22.940Z
-Stopped at: Completed quick task 260329-7uv: Fix copy button error display on step 1
+Last session: 2026-03-29T05:57:01.687Z
+Stopped at: Completed quick task 260329-86s: Remove language selection dropdown from setup wizard
 Resume file: None

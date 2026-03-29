@@ -22,13 +22,10 @@ import {
 import { useAppStore, Provider, PROVIDER_LABELS } from "@/stores/app-store";
 import { Plus, ChevronDown, Loader2 } from "lucide-react";
 
-const providers: Provider[] = ["openai", "anthropic", "gemini", "openrouter"];
+const providers: Provider[] = ["gemini"];
 
 const providerEndpoints: Record<Provider, string> = {
-  openai: 'https://api.openai.com/v1/chat/completions',
-  anthropic: 'https://api.anthropic.com/v1/messages',
   gemini: 'https://generativelanguage.googleapis.com/v1beta/openai/chat/completions',
-  openrouter: 'https://openrouter.ai/api/v1/chat/completions',
 };
 
 export function AddKeyDialog() {
@@ -70,10 +67,7 @@ export function AddKeyDialog() {
 
   const validateApiKey = async (provider: Provider, key: string): Promise<boolean> => {
     const keyPatterns: Record<Provider, RegExp> = {
-      openai: /^sk-[A-Za-z0-9_-]{20,}$/,
-      anthropic: /^sk-ant-[A-Za-z0-9_-]{20,}$/,
       gemini: /^AIza[A-Za-z0-9_-]{30,}$/,
-      openrouter: /^sk-or-v[A-Za-z0-9_-]{20,}$/,
     };
 
     const pattern = keyPatterns[provider];
@@ -85,22 +79,13 @@ export function AddKeyDialog() {
       const testEndpoint = providerEndpoints[provider];
       const headers: Record<string, string> = {
         'Content-Type': 'application/json',
+        'Authorization': `Bearer ${key}`,
       };
-
-      if (provider === 'anthropic') {
-        headers['x-api-key'] = key;
-        headers['anthropic-version'] = '2023-06-01';
-      } else {
-        headers['Authorization'] = `Bearer ${key}`;
-      }
 
       const response = await fetch(testEndpoint, {
         method: 'POST',
         headers,
-        body: JSON.stringify(provider === 'anthropic' 
-          ? { model: 'claude-3-haiku-20240307', max_tokens: 1, messages: [{ role: 'user', content: 'test' }] }
-          : { model: 'gpt-4o-mini', max_tokens: 1, messages: [{ role: 'user', content: 'test' }] }
-        ),
+        body: JSON.stringify({ model: 'gemini-3-flash-preview', max_tokens: 1, messages: [{ role: 'user', content: 'test' }] }),
       });
 
       if (response.status === 401 || response.status === 403) {

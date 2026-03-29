@@ -1,13 +1,10 @@
 import { create } from 'zustand';
 import { persist, createJSONStorage, StateStorage } from 'zustand/middleware';
 
-export type Provider = 'openai' | 'gemini' | 'anthropic' | 'openrouter';
+export type Provider = 'gemini';
 
 export const PROVIDER_LIMITS: Record<Provider, number> = {
-  openai: 100,
   gemini: 1000,
-  anthropic: 100,
-  openrouter: 50,
 };
 
 export interface ProviderQuota {
@@ -174,8 +171,19 @@ class EncryptedStorage implements StateStorage {
   
   setItem(name: string, value: string): void {
     const doEncrypt = async () => {
-      const encrypted = await encryptForStorage(JSON.parse(value));
-      localStorage.setItem(name, encrypted);
+      try {
+        const encrypted = await encryptForStorage(JSON.parse(value));
+        localStorage.setItem(name, encrypted);
+      } catch (error) {
+        console.error('Failed to encrypt and save state:', error);
+        // Fallback: save unencrypted if encryption fails (better than silent data loss)
+        try {
+          localStorage.setItem(name + '-fallback', value);
+          console.warn('State saved unencrypted as fallback');
+        } catch (storageError) {
+          console.error('Complete storage failure:', storageError);
+        }
+      }
     };
     
     if (this.pendingSave) {
@@ -186,6 +194,7 @@ class EncryptedStorage implements StateStorage {
   
   removeItem(name: string): void {
     localStorage.removeItem(name);
+    localStorage.removeItem(name + '-fallback');
   }
 }
 
@@ -227,11 +236,14 @@ export interface ParseResult {
   error?: string;
 }
 
+export type SqlDialect = 'postgresql' | 'mysql' | 'sqlite';
+
 export interface AppState {
   providerKeys: ProviderKey[];
   activeProvider: Provider | null;
   schema: string | null;
   parsedSchema: ParseResult | null;
+  dialect: SqlDialect;
   quotas: Record<Provider, ProviderQuota>;
   
   addProviderKey: (provider: Provider, key: string) => void;
@@ -239,6 +251,7 @@ export interface AppState {
   setActiveProvider: (provider: Provider | null) => void;
   setSchema: (schema: string | null) => void;
   setParsedSchema: (result: ParseResult | null) => void;
+  setDialect: (dialect: SqlDialect) => void;
   getQuota: (provider: Provider) => ProviderQuota;
   incrementQuota: (provider: Provider) => void;
   resetQuota: (provider: Provider) => void;
@@ -252,11 +265,9 @@ export const useAppStore = create<AppState>()(
       activeProvider: null,
       schema: null,
       parsedSchema: null,
+      dialect: 'postgresql',
       quotas: {
-        openai: { requestsUsed: 0, lastReset: Date.now(), limit: PROVIDER_LIMITS.openai },
         gemini: { requestsUsed: 0, lastReset: Date.now(), limit: PROVIDER_LIMITS.gemini },
-        anthropic: { requestsUsed: 0, lastReset: Date.now(), limit: PROVIDER_LIMITS.anthropic },
-        openrouter: { requestsUsed: 0, lastReset: Date.now(), limit: PROVIDER_LIMITS.openrouter },
       },
       
       addProviderKey: (provider, key) =>
@@ -282,6 +293,8 @@ export const useAppStore = create<AppState>()(
       setSchema: (schema) => set({ schema }),
       
       setParsedSchema: (result) => set({ parsedSchema: result }),
+      
+      setDialect: (dialect) => set({ dialect }),
       
       getQuota: (provider) => {
         const state = get();
@@ -325,15 +338,9 @@ export const useAppStore = create<AppState>()(
 );
 
 export const PROVIDER_LABELS: Record<Provider, string> = {
-  openai: 'OpenAI',
   gemini: 'Google Gemini',
-  anthropic: 'Anthropic',
-  openrouter: 'OpenRouter',
 };
 
 export const PROVIDER_ICONS: Record<Provider, string> = {
-  openai: 'AI',
   gemini: 'Gem',
-  anthropic: 'Human',
-  openrouter: 'Router',
 };

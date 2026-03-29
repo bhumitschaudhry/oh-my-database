@@ -1,4 +1,4 @@
-import { Provider, ProviderKey, ParseResult, useAppStore } from '@/stores/app-store';
+import { Provider, ProviderKey, ParseResult, SqlDialect, useAppStore } from '@/stores/app-store';
 
 interface RateLimitEntry {
   count: number;
@@ -88,21 +88,9 @@ function sanitizeApiError(message: string): string {
 }
 
 const PROVIDER_CONFIGS: Record<Provider, { endpoint: string; model: string }> = {
-  openai: {
-    endpoint: 'https://api.openai.com/v1/chat/completions',
-    model: 'gpt-4o-mini',
-  },
   gemini: {
     endpoint: 'https://generativelanguage.googleapis.com/v1beta/openai/chat/completions',
-    model: 'gemini-2.0-flash',
-  },
-  anthropic: {
-    endpoint: 'https://api.anthropic.com/v1/messages',
-    model: 'claude-3-haiku-20240307',
-  },
-  openrouter: {
-    endpoint: 'https://openrouter.ai/api/v1/chat/completions',
-    model: 'google/gemini-2.0-flash-001',
+    model: 'gemini-3-flash-preview',
   },
 };
 
@@ -122,8 +110,8 @@ function formatSchemaForPrompt(parsedSchema: ParseResult): string {
     .join('\n\n');
 }
 
-function buildPrompt(question: string, schema: string): string {
-  return `You are a SQL expert. Given a database schema and a question, generate a valid SQL query.
+function buildPrompt(question: string, schema: string, dialect: string): string {
+  return `You are a SQL expert. Given a database schema and a question, generate a valid ${dialect} SQL query.
 
 Schema:
 ${schema}
@@ -169,29 +157,18 @@ export async function generateSQL(
 
   const sanitizedQuestion = sanitizeInput(question);
   const schemaStr = formatSchemaForPrompt(parsedSchema);
-  const prompt = buildPrompt(sanitizedQuestion, schemaStr);
+  const dialect = store.dialect;
+  const prompt = buildPrompt(sanitizedQuestion, schemaStr, dialect);
 
   const headers: Record<string, string> = {
     'Content-Type': 'application/json',
+    'Authorization': `Bearer ${apiKey}`,
   };
 
-  let body: Record<string, unknown>;
-
-  if (provider === 'anthropic') {
-    headers['x-api-key'] = apiKey;
-    headers['anthropic-version'] = '2023-06-01';
-    body = {
-      model: config.model,
-      max_tokens: 1024,
-      messages: [{ role: 'user', content: prompt }],
-    };
-  } else {
-    headers['Authorization'] = `Bearer ${apiKey}`;
-    body = {
-      model: config.model,
-      messages: [{ role: 'user', content: prompt }],
-    };
-  }
+  const body: Record<string, unknown> = {
+    model: config.model,
+    messages: [{ role: 'user', content: prompt }],
+  };
 
   const response = await fetch(config.endpoint, {
     method: 'POST',
@@ -216,12 +193,7 @@ export async function generateSQL(
 
   const data = await response.json();
 
-  let sql: string;
-  if (provider === 'anthropic') {
-    sql = data.content?.[0]?.text?.trim() || '';
-  } else {
-    sql = data.choices?.[0]?.message?.content?.trim() || '';
-  }
+  const sql = data.choices?.[0]?.message?.content?.trim() || '';
 
   if (!sql) {
     throw new Error('No SQL generated');
