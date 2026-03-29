@@ -4,7 +4,7 @@
 
 [![Status](https://img.shields.io/badge/status-v1.0%20Complete-brightgreen)](#)
 [![License](https://img.shields.io/badge/license-MIT-blue)](#)
-[![Platform](https://img.shields.io/badge/platform-GitHub%20Pages-cyan)](#)
+[![Platform](https://img.shields.io/badge/platform-Vercel-black)](#)
 
 > **ohmydatabase** is a browser-based text-to-SQL agent that helps non-technical users explore and understand their database data—without writing SQL or installing software.
 
@@ -28,7 +28,7 @@
 
 1. **Open the App**
    ```
-   https://yourusername.github.io/ohmydatabase
+   https://oh-my-database.vercel.app
    ```
 
 2. **Paste Your Schema**
@@ -90,7 +90,7 @@
 | State Management | Zustand with persistence |
 | AI Integration | REST APIs (OpenAI, Gemini, Anthropic, NVIDIA NIM, OpenRouter) |
 | SQL Execution | sql.js (SQLite in the browser) |
-| Hosting | GitHub Pages (static) |
+| Hosting | Vercel |
 
 ---
 
