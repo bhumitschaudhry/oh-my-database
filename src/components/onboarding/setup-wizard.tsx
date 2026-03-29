@@ -168,6 +168,7 @@ export function SetupWizard() {
                     )}
                   </Button>
                 </div>
+                {error && <p className="text-sm text-destructive mt-2">{error}</p>}
                 <p className="text-xs text-muted-foreground italic">
                   Run this command in your terminal to get the schema-only dump of your database.
                 </p>
