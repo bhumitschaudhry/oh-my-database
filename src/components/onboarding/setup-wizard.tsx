@@ -129,7 +129,7 @@ export function SetupWizard() {
                   <Button
                     key={type}
                     variant={dbType === type ? "default" : "outline"}
-                    className="h-20 flex flex-col gap-2"
+                    className="h-20 flex flex-col gap-2 relative z-10"
                     onClick={() => setDbType(type)}
                   >
                     <span className="font-bold">{DB_LABELS[type]}</span>
