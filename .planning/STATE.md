@@ -85,7 +85,6 @@ None yet.
 | 260322-iqw | Create a comprehensive and stylish readme for this application | 2026-03-22 | 38cff1ec | [260322-iqw-create-a-comprehensive-and-stylish-readm](./quick/260322-iqw-create-a-comprehensive-and-stylish-readm/) |
 | 260322-j6n | Rename the entire project to oh-my-database | 2026-03-22 | 83d06493 | [260322-j6n-rename-the-entire-project-to-oh-my-datab](./quick/260322-j6n-rename-the-entire-project-to-oh-my-datab/) |
 | 260322-jgk | Remove NVIDIA NIM provider, add Gemini free tier highlight | 2026-03-22 | ee91af72 | [260322-jgk-remove-nvidia-nim-functionality-and-enco](./quick/260322-jgk-remove-nvidia-nim-functionality-and-enco/) |
-
 | 260327-ci9 | Analyze codebase for bugs/issues | 2026-03-27 | | [260327-ci9-fix-it](./quick/260327-ci9-fix-it/) |
 | 260327-cv1 | Fix get started flow: Next button, copy, language selector | 2026-03-27 | cc76470a | [260327-cv1-fix-get-started-flow-unable-to-click-nex](./quick/260327-cv1-fix-get-started-flow-unable-to-click-nex/) |
 | 260329-7sy | Fix MySQL and SQLite buttons not clickable on first page | 2026-03-29 | a1dc605f | [260329-7sy-fix-mysql-and-sqlite-buttons-not-clickab](./quick/260329-7sy-fix-mysql-and-sqlite-buttons-not-clickab/) |
