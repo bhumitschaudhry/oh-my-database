@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useAppStore } from "@/stores/app-store";
 import { parseSchema } from "@/lib/schema-parser";
-import { DB_COMMANDS, DB_LABELS, DBType, Language, LANGUAGE_LABELS, LOCALIZED_COMMANDS } from "@/lib/db-commands";
+import { DB_COMMANDS, DB_LABELS, DBType, LOCALIZED_COMMANDS } from "@/lib/db-commands";
 import { 
   Database, 
   Code, 
@@ -25,7 +25,6 @@ import { Badge } from "@/components/ui/badge";
 export function SetupWizard() {
   const [step, setStep] = useState(1);
   const [dbType, setDbType] = useState<DBType>("postgresql");
-  const [language, setLanguage] = useState<Language>("en");
   const [schemaInput, setSchemaInput] = useState("");
   const [apiKey, setApiKey] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -34,7 +33,7 @@ export function SetupWizard() {
 
   const { setSchema, setParsedSchema, addProviderKey, setActiveProvider } = useAppStore();
 
-  const currentCommand = LOCALIZED_COMMANDS[language][dbType];
+  const currentCommand = LOCALIZED_COMMANDS["en"][dbType];
 
   const copyCommand = async () => {
     try {
@@ -137,20 +136,9 @@ export function SetupWizard() {
                 ))}
               </div>
               <div className="space-y-2">
-                <div className="flex items-center justify-between">
-                  <Label className="flex items-center gap-2">
-                    <Terminal className="w-4 h-4" /> Extraction Command
-                  </Label>
-                  <select
-                    value={language}
-                    onChange={(e) => setLanguage(e.target.value as Language)}
-                    className="text-xs bg-background border rounded px-2 py-1"
-                  >
-                    {(Object.keys(LANGUAGE_LABELS) as Language[]).map((lang) => (
-                      <option key={lang} value={lang}>{LANGUAGE_LABELS[lang]}</option>
-                    ))}
-                  </select>
-                </div>
+                <Label className="flex items-center gap-2">
+                  <Terminal className="w-4 h-4" /> Extraction Command
+                </Label>
                 <div className="relative group">
                   <pre className="bg-secondary p-4 rounded-md overflow-x-auto text-sm font-mono border border-border">
                     {currentCommand}
