@@ -1,0 +1,22 @@
+{
+  "buildCommand": "npm run build",
+  "framework": "nextjs",
+  "env": {
+    "NEXT_PUBLIC_VERCEL_URL": "@vercel-url"
+  },
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Cross-Origin-Embedder-Policy",
+          "value": "require-corp"
+        },
+        {
+          "key": "Cross-Origin-Opener-Policy",
+          "value": "same-origin"
+        }
+      ]
+    }
+  ]
+}
