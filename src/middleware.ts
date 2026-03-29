@@ -19,11 +19,12 @@ export function middleware(request: NextRequest) {
   response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
   response.headers.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
 
-  const nonce = Buffer.from(crypto.randomUUID()).toString('base64');
-  
+  // CSP without nonce - Next.js requires 'unsafe-eval' for dev mode and 'unsafe-inline' for React
+  // to properly hydrate and attach event handlers
+  // 'wasm-unsafe-eval' allows sql.js (WebAssembly-based SQLite) to load and execute WASM modules
   const cspHeader = (
     "default-src 'self'; " +
-    `script-src 'self' 'nonce-${nonce}' 'strict-dynamic'; ` +
+    "script-src 'self' 'unsafe-eval' 'unsafe-inline' 'wasm-unsafe-eval'; " +
     "style-src 'self' 'unsafe-inline'; " +
     "img-src 'self' data: https:; " +
     "connect-src 'self' https://api.openai.com https://generativelanguage.googleapis.com https://api.anthropic.com https://openrouter.ai https://sql.js.org; " +
