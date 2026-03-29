@@ -3,9 +3,9 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: completed
-stopped_at: "Completed quick task 260329-86s: Remove language selection dropdown from setup wizard"
-last_updated: "2026-03-29T05:57:01.690Z"
-last_activity: "2026-03-29 - Completed quick task 260329-86s: Remove the language selection option on the first page of the flow"
+stopped_at: "Completed quick task 260329-au7: Get it ready for Vercel Free Tier deploy"
+last_updated: "2026-03-29T07:53:16Z"
+last_activity: "2026-03-29 - Completed quick task 260329-au7: Prepare oh-my-database for Vercel deployment"
 progress:
   total_phases: 6
   completed_phases: 1
@@ -91,9 +91,10 @@ None yet.
 | 260329-7sy | Fix MySQL and SQLite buttons not clickable on first page | 2026-03-29 | a1dc605f | [260329-7sy-fix-mysql-and-sqlite-buttons-not-clickab](./quick/260329-7sy-fix-mysql-and-sqlite-buttons-not-clickab/) |
 | 260329-7uv | Fix copy button error display on step 1 | 2026-03-29 | 7000a0d2 | [260329-7uv-the-copy-buttons-on-the-first-page-of-th](./quick/260329-7uv-the-copy-buttons-on-the-first-page-of-th/) |
 | 260329-86s | Remove language selection dropdown from setup wizard | 2026-03-29 | a449bf23 | [260329-86s-remove-the-language-selection-option-on-](./quick/260329-86s-remove-the-language-selection-option-on-/) |
+| 260329-au7 | Get it ready for Vercel Free Tier deploy | 2026-03-29 | 7e5a167c | [260329-au7-get-it-ready-for-vercel-free-tier-deploy](./quick/260329-au7-get-it-ready-for-vercel-free-tier-deploy/) |
 
 ## Session Continuity
 
-Last session: 2026-03-29T05:57:01.687Z
-Stopped at: Completed quick task 260329-86s: Remove language selection dropdown from setup wizard
+Last session: 2026-03-29T07:53:16Z
+Stopped at: Completed quick task 260329-au7: Get it ready for Vercel Free Tier deploy
 Resume file: None
