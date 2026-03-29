@@ -4,11 +4,15 @@ import type { NextRequest } from 'next/server';
 const ALLOWED_ORIGINS = [
   'http://localhost:3000',
   'http://localhost:3001',
+  ...(process.env.VERCEL_URL ? [`https://${process.env.VERCEL_URL}`] : []),
 ];
 
 function isOriginAllowed(origin: string | null): boolean {
   if (!origin) return false;
-  return ALLOWED_ORIGINS.includes(origin);
+  if (ALLOWED_ORIGINS.includes(origin)) return true;
+  // Allow Vercel preview deployments
+  if (origin.match(/^https:\/\/.*\.vercel\.app$/)) return true;
+  return false;
 }
 
 export function middleware(request: NextRequest) {
