@@ -193,7 +193,13 @@ export async function generateSQL(
 
   const data = await response.json();
 
-  const sql = data.choices?.[0]?.message?.content?.trim() || '';
+  let sql = data.choices?.[0]?.message?.content?.trim() || '';
+
+  // Strip markdown code fences from AI-generated SQL
+  sql = sql
+    .replace(/^```(?:sql|SQL)?\s*/m, '')  // Remove opening code fence
+    .replace(/\s*```$/m, '')               // Remove closing code fence
+    .trim();                                // Clean up remaining whitespace
 
   if (!sql) {
     throw new Error('No SQL generated');
